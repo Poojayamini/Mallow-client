@@ -1,0 +1,28 @@
+/* Header */
+.headerCls {
+    background-color: #000;
+    height: 60px;
+}
+
+
+.modal_subhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal_head_txt {
+    font-weight: 600;
+    font-size: 25px;
+}
+.modal_close_icon_container {
+    display: flex;
+    justify-content: end;
+}
+
+.modal_close_icon {
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 20px;
+}
