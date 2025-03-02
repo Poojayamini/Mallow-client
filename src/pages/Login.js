@@ -52,7 +52,7 @@ const Login = () => {
         let isValid = true;
 
         if (!email.trim()) {
-            errors.email = "Username is required";
+            errors.email = "Email is required";
             isValid = false;
         } else if (!/\S+@\S+\.\S+/.test(email)) {
             errors.email = "Email address is invalid";
@@ -70,9 +70,9 @@ const Login = () => {
 
     const validateEmail = (value) => {
         if (!value.trim()) {
-            setErrors(prevErrors => ({ ...prevErrors, email: 'E-mail is required' }));
+            setErrors(prevErrors => ({ ...prevErrors, email: 'Email is required' }));
         } else if (!/\S+@\S+\.\S+/.test(value)) {
-            setErrors(prevErrors => ({ ...prevErrors, email: 'Please Enter the Valid E-mail' }));
+            setErrors(prevErrors => ({ ...prevErrors, email: 'Please Enter the Valid Email' }));
         } else {
             setErrors(prevErrors => ({ ...prevErrors, email: '' }));
         }
@@ -139,7 +139,7 @@ const Login = () => {
                                     id="email"
                                     name="email"
                                     className='input_box'
-                                    placeholder="E-mail"
+                                    placeholder="Email"
                                     value={email}
                                     onChange={(e) =>
                                         handleEmailChange(e.target.value)

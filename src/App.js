@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner';
 import { Modal } from 'react-bootstrap';
 import { useAppContext } from './Apiservice/AppProvider';
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Login from './pages/Login';
 import SimpleModal from './pages/CreateeditUser';
 import UserView from './pages/UserList';

@@ -4,12 +4,21 @@ import Alert from "./Alert";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("tkn");
+        if (!token) {
+            navigate("/");
+        }
+    }, [navigate]);
+
     const handleCloseAlert = () => {
         setShowAlert(false);
-      };
-      const handleConfirmLogout = () => {
+    };
+
+    const handleConfirmLogout = () => {
         navigate("/");
     };
     return (
@@ -31,18 +40,18 @@ const Header = () => {
                 alignItems: "center",
                 borderRadius: "4px"
             }}>
-                <AiOutlineLogout  onClick={() => setShowAlert(true)} color="white" />
+                <AiOutlineLogout onClick={() => setShowAlert(true)} color="white" />
             </div>
             {showAlert && (
-        <Alert
-          title={"Alert"}
-          msg={"Are you sure you want to logout?"}
-          open={true}
-          type={"yesorno"}
-          onClose={handleCloseAlert}
-          onConfirm={handleConfirmLogout}
-        />
-      )}
+                <Alert
+                    title={"Alert"}
+                    msg={"Are you sure you want to logout?"}
+                    open={true}
+                    type={"yesorno"}
+                    onClose={handleCloseAlert}
+                    onConfirm={handleConfirmLogout}
+                />
+            )}
         </div>
     );
 };
