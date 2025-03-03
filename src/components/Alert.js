@@ -28,19 +28,19 @@ const Alert = ({ title, msg, open, type, onClose, onConfirm }) => {
               </div>
             </div>
             <div className='mdlcmd_subhead mdlcmd_subhead_container'>
-                            {type == "info" &&
+                            {type === "info" &&
                                 <Button variant="contained" onClick={onClose}>Okay</Button>
                                 // <button type="button" onClick={onClose} className="modalcommad_btn info"><text>{language.Okay}</text></button>
                             }
-                            {type == "success" &&
+                            {type === "success" &&
                                 <Button variant="contained" onClick={onClose}>Okay</Button>
                                 // <button type="button" onClick={onClose} className="modalcommad_btn SUCCESS"><text>{language.Okay}</text></button>
                             }
-                            {type == "error" &&
+                            {type === "error" &&
                                 <Button variant="contained" onClick={onClose}>Okay</Button>
                                 // <button type="button" onClick={onClose} className="modalcommad_btn error"><text>{language.close}</text></button>
                             }
-                            {type == "yesorno" &&
+                            {type === "yesorno" &&
                                 <>
                                  <Button variant="outlined" color='primary'  onClick={onClose}>No</Button>
                                  <span style={{ margin: '0 10px' }}></span> {/* Add a span for spacing */}

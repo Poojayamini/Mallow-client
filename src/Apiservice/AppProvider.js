@@ -1,17 +1,11 @@
 import axios from 'axios';
 import React, { createContext, useContext, useState } from 'react';
-// import Alert from './Alert';
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   
   const [value, setValue] = useState(false);
-  const [userAlert, setUserAlert] = useState(false);
-  const [alertMsg, setAlertMsg] = useState("");
-  const [alertType, setAlertType] = useState("");
-  const [alertTittle, setAlertTittle] = useState("");
-  const [alertClose, setAlertClose] = useState(() => null);
 
   const updateValue = (newValue) => {
     setValue(newValue);
@@ -48,14 +42,14 @@ const baseURL = "https://reqres.in/api";
     }
     catch (error) {
       if (error.response.data.status === 401) {
-        setUserAlert(true);
-        setAlertTittle("Info");
-        setAlertMsg("Your current session has been expired. Please log in again.");
-        setAlertType("info");
-        setAlertClose(() => () => {
-          window.location.href = "/";
-          localStorage.clear()
-        })
+        // setUserAlert(true);
+        // setAlertTittle("Info");
+        // setAlertMsg("Your current session has been expired. Please log in again.");
+        // setAlertType("info");
+        // setAlertClose(() => () => {
+        //   window.location.href = "/";
+        //   localStorage.clear()
+        // })
         return
       }
       updateValue(false)
@@ -89,14 +83,14 @@ const baseURL = "https://reqres.in/api";
       if (error.response.data.status === 401) {
         localStorage.clear()
         window.location.href = "/";
-        setAlertTittle("Info");
-        setAlertMsg("Your current session has been expired. Please log in again.");
-        setAlertType("info");
-        setUserAlert(true);
-        setAlertClose(() => () => {
-          window.location.href = "/";
-          localStorage.clear()
-        })
+        // setAlertTittle("Info");
+        // setAlertMsg("Your current session has been expired. Please log in again.");
+        // setAlertType("info");
+        // setUserAlert(true);
+        // setAlertClose(() => () => {
+        //   window.location.href = "/";
+        //   localStorage.clear()
+        // })
         return
       }
       updateValue(false)
@@ -107,13 +101,6 @@ const baseURL = "https://reqres.in/api";
   return (
     <AppContext.Provider value={{ appContextValue, PostApi, GetApi, }}>
       {children}
-      {/* <Alert
-        title={alertTittle}
-        msg={alertMsg}
-        open={userAlert}
-        type={alertType}
-        onClose={alertClose}
-      /> */}
     </AppContext.Provider>
   );
 };

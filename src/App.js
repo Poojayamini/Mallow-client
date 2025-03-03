@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner';
 import { Modal } from 'react-bootstrap';

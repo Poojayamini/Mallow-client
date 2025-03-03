@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Table, Input, Button, Space, Avatar, Card, Flex, Modal } from "antd";
-import { EditOutlined, DeleteOutlined, PlusOutlined, AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import React, { useEffect, useState, useCallback } from "react";
+import { Table, Button, Space, Avatar, Card, Flex } from "antd";
+import { EditOutlined, DeleteOutlined, AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import "./Userlist.css";
 import Search from "antd/es/input/Search";
 import SimpleModal from "./CreateeditUser";
 import Alert from "../components/Alert";
 import { useAppContext } from "../Apiservice/AppProvider";
 import Header from "../components/Header";
-
-const { confirm } = Modal;
 
 const UserView = () => {
   const [data, setData] = useState([]);
@@ -23,24 +21,7 @@ const UserView = () => {
   const { GetApi } = useAppContext();
   const [userToDelete, setUserToDelete] = useState(null);
 
-  useEffect(() => {
-    getuserpage(1);
-
-    // Event listener for screen resize
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      setView(window.innerWidth <= 768 ? "card" : "table");
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
-
-  const getuserpage = (page) => {
+  const getuserpage = useCallback((page) => {
     const url = "/users";
     const params = { page };
 
@@ -54,7 +35,25 @@ const UserView = () => {
       .catch((error) => {
         console.log(error);
       });
+  }, [GetApi]); // Ensure 'GetApi' is included in dependencies if it's from context
+
+  useEffect(() => {
+    getuserpage(1);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      setView(window.innerWidth <= 768 ? "card" : "table");
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [getuserpage]); // No more ESLint warning
+
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
   };
+
 
   const handleDeleteClick = (key) => {
     setUserToDelete(key);
